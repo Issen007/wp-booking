@@ -32,7 +32,48 @@ Item-Booking is a small Plugin to Wordpress to setup a calender booking of your 
   */
 
 
-if ( ! function_exist( 'add_action') ) {
+if ( ! function_exist('add_action') ) {
     echo 'Sorry this is not allowed';
     exit;
 }
+
+class booking {
+  function __construct() {
+    add_action('init', array($this, 'custom_post_type'));
+  }
+
+  function activate() {
+    // generated a CPT
+    // flush rewrite rules
+    flush_rewrite_rules();
+
+    $this->custom_post_type();
+  }
+
+  function deactivate() {
+    // flush rewrite rules
+    flush_rewrite_rules();
+  }
+
+  function uninstsall() {
+    // delete CPT
+    // Delete all the plugin data from database
+  }
+
+  function custom_post_type() {
+    // Activate the plugin in to the WP Menu. 
+    register_post_type( 'Item Booking', ['public' => true, 'Label' => 'Item Booking'] );
+  }
+
+
+if ( class_exists('booking') ) {
+  $test_booking = new booking();
+}
+
+// activation
+register_activateion_hook( __FILE__, array($test_booking, 'activate'));
+
+// deactivate
+register_deactivateion_hook( __FILE__, array($test_booking, 'deactivate'));
+
+// uninstall
