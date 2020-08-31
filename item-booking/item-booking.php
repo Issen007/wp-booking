@@ -30,3 +30,9 @@ Item-Booking is a small Plugin to Wordpress to setup a calender booking of your 
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
   */
+
+
+if ( ! function_exist( 'add_action') ) {
+    echo 'Sorry this is not allowed';
+    exit;
+}
