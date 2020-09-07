@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  host: <MY URL>  # example wordpress.apps.int.company.com
+  port:
+    targetPort: 80
+  to:
+    kind: Service
+    name: wordpress
+    weight: 100
+  wildcardPolicy: None
